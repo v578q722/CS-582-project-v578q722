@@ -342,3 +342,13 @@ class CourseView(CourseObjectMixin, View):
 def my_fbv(request, *args, **kwargs):
     print(request.method)
     return render(request, 'about.html', {})
+
+from django.contrib import admin
+
+from django.apps import AppConfig
+
+
+class PagesConfig(AppConfig):
+    name = 'pages'
+
+from django.db import models
