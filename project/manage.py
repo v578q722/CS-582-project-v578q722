@@ -38,3 +38,30 @@ class Migration(migrations.Migration):
             ],
         ),
     ]
+from django.contrib import admin
+
+
+from .models import Article
+
+admin.site.register(Article)
+
+from django.apps import AppConfig
+
+
+class BlogConfig(AppConfig):
+    name = 'blog'
+
+from django import forms
+
+from .models import Article
+
+
+class ArticleModelForm(forms.ModelForm):
+    class Meta:
+        model = Article
+        fields =[
+            'title',
+            'content',
+            'active',
+        ]
+
