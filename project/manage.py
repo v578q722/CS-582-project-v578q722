@@ -178,3 +178,27 @@ class Migration(migrations.Migration):
             ],
         ),
     ]
+
+from django.contrib import admin
+
+from django.apps import AppConfig
+
+class CoursesConfig(AppConfig):
+    name = 'courses'
+
+from django import forms
+
+from .models import Course
+
+class CourseModelForm(forms.ModelForm):
+    class Meta:
+        model = Course
+        fields = [
+            'title'
+        ]
+    
+    def clean_title(self):
+        title = self.cleaned_data.get('title')
+        if title.lower() == 'abc':
+            raise forms.ValidationError("This is not a valid title")
+        return title
